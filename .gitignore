@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# old project reference
+pacific-fish-old/
+
 # plugins
 .agents/
 skills-lock.json

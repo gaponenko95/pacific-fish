@@ -1,7 +1,30 @@
 {
+	"Navigation": {
+		"home": "Home",
+		"gallery": "Gallery",
+		"products": "Products",
+		"news": "News",
+		"contacts": "Contacts"
+	},
 	"HomePage": {
 		"title": "Pacific Fish",
 		"description": "Website under development"
+	},
+	"GalleryPage": {
+		"title": "Gallery",
+		"description": "Page under development"
+	},
+	"ProductsPage": {
+		"title": "Products",
+		"description": "Page under development"
+	},
+	"NewsPage": {
+		"title": "News",
+		"description": "Page under development"
+	},
+	"ContactsPage": {
+		"title": "Contacts",
+		"description": "Page under development"
 	},
 	"LocaleSwitcher": {
 		"ru": "Русский",

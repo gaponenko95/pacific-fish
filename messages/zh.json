@@ -1,7 +1,30 @@
 {
+	"Navigation": {
+		"home": "首页",
+		"gallery": "画廊",
+		"products": "产品",
+		"news": "新闻",
+		"contacts": "联系我们"
+	},
 	"HomePage": {
 		"title": "Pacific Fish",
 		"description": "网站正在建设中"
+	},
+	"GalleryPage": {
+		"title": "画廊",
+		"description": "页面正在建设中"
+	},
+	"ProductsPage": {
+		"title": "产品",
+		"description": "页面正在建设中"
+	},
+	"NewsPage": {
+		"title": "新闻",
+		"description": "页面正在建设中"
+	},
+	"ContactsPage": {
+		"title": "联系我们",
+		"description": "页面正在建设中"
 	},
 	"LocaleSwitcher": {
 		"ru": "Русский",

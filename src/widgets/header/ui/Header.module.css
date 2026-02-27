@@ -1,0 +1,31 @@
+.header {
+	border-bottom: 1px solid #eaeaea;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 1200px;
+	padding: 1rem 2rem;
+	margin: 0 auto;
+}
+
+.nav-list {
+	display: flex;
+	gap: 1.5rem;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.nav-link {
+	font-size: 1rem;
+	color: inherit;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.nav-link:hover {
+	color: #0070f3;
+}

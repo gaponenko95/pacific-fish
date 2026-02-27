@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { LocaleSwitcher } from '@/features/locale-switcher/ui/LocaleSwitcher';
 import styles from './page.module.css';
 
 export default async function Home({
@@ -22,7 +21,6 @@ function HomeContent() {
 			<main className={styles.main}>
 				<h1>{t('title')}</h1>
 				<p>{t('description')}</p>
-				<LocaleSwitcher />
 			</main>
 		</div>
 	);
