@@ -5,6 +5,7 @@ import { defaultLocale, locales } from '@/shared/config/i18n';
 export const routing = defineRouting({
 	locales,
 	defaultLocale,
+	localePrefix: 'as-needed',
 });
 
 export const { Link } = createNavigation(routing);
