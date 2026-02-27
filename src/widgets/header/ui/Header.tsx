@@ -17,10 +17,10 @@ export function Header() {
 	return (
 		<header className={styles.header}>
 			<nav className={styles.nav}>
-				<ul className={styles['nav-list']}>
+				<ul className={styles.navList}>
 					{navLinks.map(({ href, key }) => (
 						<li key={key}>
-							<Link href={href} className={styles['nav-link']}>
+							<Link href={href} className={styles.navLink}>
 								{t(key)}
 							</Link>
 						</li>

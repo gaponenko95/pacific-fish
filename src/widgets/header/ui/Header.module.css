@@ -11,7 +11,7 @@
 	margin: 0 auto;
 }
 
-.nav-list {
+.navList {
 	display: flex;
 	gap: 1.5rem;
 	padding: 0;
@@ -19,13 +19,13 @@
 	list-style: none;
 }
 
-.nav-link {
+.navLink {
 	font-size: 1rem;
 	color: inherit;
 	text-decoration: none;
 	transition: color 0.2s;
 }
 
-.nav-link:hover {
+.navLink:hover {
 	color: #0070f3;
 }
