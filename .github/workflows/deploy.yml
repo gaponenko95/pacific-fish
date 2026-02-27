@@ -53,8 +53,9 @@ jobs:
           envs: REGISTRY,IMAGE_NAME
           script: |
             cd /opt/pacific-fish
+            set -a && source .env && set +a
             docker compose pull app
             docker pull ${REGISTRY}/${IMAGE_NAME}:migrator
-            docker run --rm --network pacific-fish_default --env-file .env ${REGISTRY}/${IMAGE_NAME}:migrator
+            docker run --rm --network pacific-fish_default -e DATABASE_URL="postgresql://pacific:${POSTGRES_PASSWORD}@db:5432/pacific_fish" ${REGISTRY}/${IMAGE_NAME}:migrator
             docker compose up -d --no-deps app
             docker image prune -f
