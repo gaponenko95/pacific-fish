@@ -1,24 +1,42 @@
-import { auth } from '@/shared/lib/auth';
-import { logout } from '@/features/auth/actions/logout';
+'use client';
+
+import { signOut, useSession } from 'next-auth/react';
 import { LoginForm } from '@/features/auth/ui/LoginForm';
 import styles from './page.module.css';
 
-export default async function AdminPage() {
-	const session = await auth();
+export default function AdminPage() {
+	const { data: session, status, update } = useSession();
+
+	if (status === 'loading') {
+		return (
+			<div className={styles.loading}>
+				<p>Загрузка...</p>
+			</div>
+		);
+	}
 
 	if (!session) {
 		return <LoginForm />;
+	}
+
+	async function handleLogout() {
+		await signOut({ redirect: false });
+		await update();
 	}
 
 	return (
 		<div className={styles.page}>
 			<h1>Добро пожаловать, {session.user?.name}!</h1>
 			<p className={styles.subtitle}>Панель управления Pacific Fish</p>
-			<form action={logout} className={styles.logoutForm}>
-				<button type="submit" className={styles.logoutButton}>
+			<div className={styles.logoutForm}>
+				<button
+					type="button"
+					className={styles.logoutButton}
+					onClick={handleLogout}
+				>
 					Выйти
 				</button>
-			</form>
+			</div>
 		</div>
 	);
 }

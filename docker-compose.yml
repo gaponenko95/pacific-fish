@@ -5,6 +5,8 @@ services:
       - '3000:3000'
     environment:
       - DATABASE_URL=postgresql://pacific:pacific_secret@db:5432/pacific_fish
+      - AUTH_SECRET=2jgaP1roiNZ31LGbs3i5bgsoEERVjcHJqOaqTOpEUKk=
+      - AUTH_URL=http://localhost:3000
     volumes:
       - uploads:/app/uploads
     depends_on:

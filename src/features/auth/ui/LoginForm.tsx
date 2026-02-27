@@ -1,15 +1,39 @@
 'use client';
 
-import { useActionState } from 'react';
-import { authenticate } from '@/features/auth/actions/authenticate';
+import { useState } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 import styles from './LoginForm.module.css';
 
 export function LoginForm() {
-	const [error, formAction, isPending] = useActionState(authenticate, null);
+	const { update } = useSession();
+	const [error, setError] = useState<string | null>(null);
+	const [isPending, setIsPending] = useState(false);
+
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		setError(null);
+		setIsPending(true);
+
+		const formData = new FormData(e.currentTarget);
+
+		const result = await signIn('credentials', {
+			email: formData.get('email'),
+			password: formData.get('password'),
+			redirect: false,
+		});
+
+		if (result?.error) {
+			setError('Неверный email или пароль');
+			setIsPending(false);
+			return;
+		}
+
+		await update();
+	}
 
 	return (
 		<div className={styles.page}>
-			<form action={formAction} className={styles.card}>
+			<form onSubmit={handleSubmit} className={styles.card}>
 				<h1 className={styles.title}>Pacific Fish</h1>
 				<p className={styles.subtitle}>Панель управления</p>
 
