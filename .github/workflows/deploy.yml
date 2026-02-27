@@ -3,10 +3,17 @@ name: Deploy
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+    inputs:
+      run_seed:
+        description: 'Run database seed'
+        type: boolean
+        default: false
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  RUN_SEED: ${{ inputs.run_seed || 'false' }}
 
 jobs:
   build-and-deploy:
@@ -50,13 +57,16 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          envs: REGISTRY,IMAGE_NAME
+          envs: REGISTRY,IMAGE_NAME,RUN_SEED
           script: |
             cd /opt/pacific-fish
             set -a && source .env && set +a
+            printf 'services:\n  app:\n    environment:\n      - AUTH_SECRET=%s\n' "${AUTH_SECRET}" > docker-compose.override.yml
             docker compose pull app
             docker pull ${REGISTRY}/${IMAGE_NAME}:migrator
             docker run --rm --network pacific-fish_default -e DATABASE_URL="postgresql://pacific:${POSTGRES_PASSWORD}@db:5432/pacific_fish" ${REGISTRY}/${IMAGE_NAME}:migrator npx prisma migrate deploy
-            docker run --rm --network pacific-fish_default -e DATABASE_URL="postgresql://pacific:${POSTGRES_PASSWORD}@db:5432/pacific_fish" ${REGISTRY}/${IMAGE_NAME}:migrator npx prisma db seed || true
+            if [ "$RUN_SEED" = "true" ]; then
+              docker run --rm --network pacific-fish_default -e DATABASE_URL="postgresql://pacific:${POSTGRES_PASSWORD}@db:5432/pacific_fish" ${REGISTRY}/${IMAGE_NAME}:migrator npx prisma db seed || true
+            fi
             docker compose up -d --no-deps app
             docker image prune -f
