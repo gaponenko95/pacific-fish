@@ -12,9 +12,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# Stage 3: Migrator (for running prisma migrate deploy)
+# Stage 3: Migrator (for migrations and seed)
 FROM deps AS migrator
-CMD ["npx", "prisma", "migrate", "deploy"]
+COPY prisma ./prisma
 
 # Stage 4: Production image
 FROM node:20-alpine AS runner

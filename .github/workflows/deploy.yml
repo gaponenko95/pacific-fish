@@ -56,6 +56,7 @@ jobs:
             set -a && source .env && set +a
             docker compose pull app
             docker pull ${REGISTRY}/${IMAGE_NAME}:migrator
-            docker run --rm --network pacific-fish_default -e DATABASE_URL="postgresql://pacific:${POSTGRES_PASSWORD}@db:5432/pacific_fish" ${REGISTRY}/${IMAGE_NAME}:migrator
+            docker run --rm --network pacific-fish_default -e DATABASE_URL="postgresql://pacific:${POSTGRES_PASSWORD}@db:5432/pacific_fish" ${REGISTRY}/${IMAGE_NAME}:migrator npx prisma migrate deploy
+            docker run --rm --network pacific-fish_default -e DATABASE_URL="postgresql://pacific:${POSTGRES_PASSWORD}@db:5432/pacific_fish" ${REGISTRY}/${IMAGE_NAME}:migrator npx prisma db seed || true
             docker compose up -d --no-deps app
             docker image prune -f
