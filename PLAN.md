@@ -139,8 +139,9 @@ Seed-скрипт: `prisma/seed.ts` (данные из старого проек
 **Auth.js v5** (`next-auth@beta`), JWT-сессии, Credentials provider, bcryptjs.
 Конфиг: `src/shared/lib/auth.ts` + `auth.types.ts`.
 API route: `src/app/api/auth/[...nextauth]/route.ts`.
-Админка: `/admin` (вне i18n, русский) — форма логина или dashboard в зависимости от сессии.
-FSD: shared/lib (конфиг), features/auth (UI + actions), app/admin (страницы).
+Админка: `/admin` (вне i18n, русский) — клиентская, `useSession` + `signIn`/`signOut` из `next-auth/react`.
+`SessionProvider` в `layout.tsx`, вход/выход без перезагрузки страницы через `update()`.
+FSD: shared/lib (конфиг), features/auth/ui (LoginForm), app/admin (страницы).
 Seed: admin@pacific-fish.ru / admin123.
 
 ### Этап 8 — Бэкенд (API)
