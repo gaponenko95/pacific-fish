@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - DATABASE_URL=postgresql://pacific:pacific_secret@db:5432/pacific_fish
     volumes:
@@ -14,6 +14,8 @@ services:
 
   db:
     image: postgres:16-alpine
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_USER: pacific
       POSTGRES_PASSWORD: pacific_secret
@@ -21,7 +23,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U pacific -d pacific_fish"]
+      test: ['CMD-SHELL', 'pg_isready -U pacific -d pacific_fish']
       interval: 5s
       timeout: 5s
       retries: 5

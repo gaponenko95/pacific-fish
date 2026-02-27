@@ -12,9 +12,11 @@
 		"format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
 		"docker:up": "docker compose up --build -d",
 		"docker:down": "docker compose down",
+		"postinstall": "prisma generate",
 		"prepare": "husky"
 	},
 	"dependencies": {
+		"@prisma/client": "^6.19.2",
 		"next": "16.1.6",
 		"next-intl": "^4.8.3",
 		"react": "19.2.3",
@@ -33,6 +35,9 @@
 			"prettier --write"
 		]
 	},
+	"prisma": {
+		"seed": "npx tsx prisma/seed.ts"
+	},
 	"devDependencies": {
 		"@types/node": "^20",
 		"@types/react": "^19",
@@ -44,10 +49,12 @@
 		"husky": "^9.1.7",
 		"lint-staged": "^16.2.7",
 		"prettier": "^3.8.1",
+		"prisma": "^6.19.2",
 		"stylelint": "^17.4.0",
 		"stylelint-config-recess-order": "^7.6.1",
 		"stylelint-config-standard": "^40.0.0",
 		"stylelint-order": "^7.0.1",
+		"tsx": "^4.21.0",
 		"typescript": "^5"
 	}
 }

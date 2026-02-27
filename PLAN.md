@@ -63,11 +63,15 @@
 22. ~~Настроить роутинг App Router на основе структуры старого сайта~~
 23. ~~Создать страницы-заглушки для всех разделов с базовой навигацией~~
 
-### Этап 7 — База данных и авторизация
+### Этап 7 — База данных и авторизация (частично ✅)
 
-#### Схема БД (Prisma)
+#### Схема БД (Prisma) ✅
 
-**Сущности:**
+**Prisma 6** (`prisma@6.19.2`, `@prisma/client@6.19.2`), генератор `prisma-client-js`.
+Синглтон PrismaClient: `src/shared/lib/prisma.ts`.
+Первая миграция: `prisma/migrations/20260227154148_init/`.
+
+**Сущности (11 моделей, 2 enum):**
 
 1. **User** — администраторы сайта
    - `id`, `email`, `passwordHash`, `name`, `role` (ADMIN), `createdAt`
@@ -117,10 +121,10 @@
 
 #### Задачи этапа
 
-24. Настроить Prisma — установить, подключить к PostgreSQL, создать схему
-25. Создать все модели (User, News, NewsImage, Product, Supplier, ProductStock, Partner, GalleryImage, Announcement, ContactRequest, SiteSetting)
-26. Написать seed-скрипт — перенести данные из старого проекта (news.js, prices.js) в БД
-27. Настроить переменные окружения (.env, .env.example)
+24. ~~Настроить Prisma — установить, подключить к PostgreSQL, создать схему~~
+25. ~~Создать все модели (User, News, NewsImage, Product, Supplier, ProductStock, Partner, GalleryImage, Announcement, ContactRequest, SiteSetting)~~
+26. ~~Написать seed-скрипт — перенести данные из старого проекта (news.js, prices.js) в БД~~
+27. ~~Настроить переменные окружения (.env, .env.example)~~
 28. Сделать авторизацию через NextAuth.js (Credentials — логин/пароль)
 
 ### Этап 8 — Бэкенд (API)
