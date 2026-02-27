@@ -1,20 +1,20 @@
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
 }
 
 .main {
-  text-align: center;
+	text-align: center;
 }
 
 .main h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
+	font-size: 2.5rem;
 }
 
 .main p {
-  font-size: 1.2rem;
-  color: #666;
+	font-size: 1.2rem;
+	color: #666;
 }

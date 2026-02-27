@@ -1,32 +1,50 @@
 {
-  "name": "pacific-fish-new",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "lint:css": "stylelint \"src/**/*.css\"",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\""
-  },
-  "dependencies": {
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.1",
-    "stylelint": "^17.4.0",
-    "stylelint-config-standard": "^40.0.0",
-    "typescript": "^5"
-  }
+	"name": "pacific-fish-new",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "eslint",
+		"lint:css": "stylelint \"src/**/*.css\"",
+		"format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+		"format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+		"prepare": "husky"
+	},
+	"dependencies": {
+		"next": "16.1.6",
+		"react": "19.2.3",
+		"react-dom": "19.2.3"
+	},
+	"lint-staged": {
+		"*.{ts,tsx}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.css": [
+			"stylelint --fix",
+			"prettier --write"
+		],
+		"*.{json,md,yml,yaml}": [
+			"prettier --write"
+		]
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"babel-plugin-react-compiler": "1.0.0",
+		"eslint": "^9",
+		"eslint-config-next": "16.1.6",
+		"eslint-config-prettier": "^10.1.8",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
+		"prettier": "^3.8.1",
+		"stylelint": "^17.4.0",
+		"stylelint-config-recess-order": "^7.6.1",
+		"stylelint-config-standard": "^40.0.0",
+		"stylelint-order": "^7.0.1",
+		"typescript": "^5"
+	}
 }
