@@ -1,0 +1,11 @@
+{
+	"HomePage": {
+		"title": "Pacific Fish",
+		"description": "Website under development"
+	},
+	"LocaleSwitcher": {
+		"ru": "Русский",
+		"en": "English",
+		"zh": "中文"
+	}
+}
