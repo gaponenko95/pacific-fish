@@ -1,0 +1,26 @@
+.page {
+	padding: 2rem;
+}
+
+.subtitle {
+	margin-top: 0.5rem;
+	color: #666;
+}
+
+.logoutForm {
+	margin-top: 1.5rem;
+}
+
+.logoutButton {
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	color: #fff;
+	cursor: pointer;
+	background: #dc2626;
+	border: none;
+	border-radius: 6px;
+}
+
+.logoutButton:hover {
+	background: #b91c1c;
+}

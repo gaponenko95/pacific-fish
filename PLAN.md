@@ -70,6 +70,7 @@
 **Prisma 6** (`prisma@6.19.2`, `@prisma/client@6.19.2`), генератор `prisma-client-js`.
 Синглтон PrismaClient: `src/shared/lib/prisma.ts`.
 Первая миграция: `prisma/migrations/20260227154148_init/`.
+Seed-скрипт: `prisma/seed.ts` (данные из старого проекта).
 
 **Сущности (11 моделей, 2 enum):**
 
@@ -119,13 +120,28 @@
       `companyFeatures` (год основания, кол-во поставщиков, тонн и т.д.),
       `videoUrl` (ссылка на RuTube)
 
+#### CI/CD для миграций ✅
+
+- Dockerfile: отдельный target `migrator` (на базе `deps` stage с полными node_modules)
+- Runner stage содержит только `.prisma` и `@prisma/client` (runtime)
+- CI собирает и пушит два образа: `app` (`:latest`) и `:migrator`
+- Deploy: `docker run --rm --network pacific-fish_default` с migrator-образом
+- `DATABASE_URL` конструируется из `POSTGRES_PASSWORD` в `.env` на сервере
+
 #### Задачи этапа
 
 24. ~~Настроить Prisma — установить, подключить к PostgreSQL, создать схему~~
 25. ~~Создать все модели (User, News, NewsImage, Product, Supplier, ProductStock, Partner, GalleryImage, Announcement, ContactRequest, SiteSetting)~~
 26. ~~Написать seed-скрипт — перенести данные из старого проекта (news.js, prices.js) в БД~~
 27. ~~Настроить переменные окружения (.env, .env.example)~~
-28. Сделать авторизацию через NextAuth.js (Credentials — логин/пароль)
+28. ~~Сделать авторизацию через NextAuth.js (Credentials — логин/пароль)~~
+
+**Auth.js v5** (`next-auth@beta`), JWT-сессии, Credentials provider, bcryptjs.
+Конфиг: `src/shared/lib/auth.ts` + `auth.types.ts`.
+API route: `src/app/api/auth/[...nextauth]/route.ts`.
+Админка: `/admin` (вне i18n, русский) — форма логина или dashboard в зависимости от сессии.
+FSD: shared/lib (конфиг), features/auth (UI + actions), app/admin (страницы).
+Seed: admin@pacific-fish.ru / admin123.
 
 ### Этап 8 — Бэкенд (API)
 

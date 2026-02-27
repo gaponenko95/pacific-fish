@@ -1,8 +1,21 @@
 import { PrismaClient, GalleryCategory } from '@prisma/client';
+import { hashSync } from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
+	// ─── Admin User ─────────────────────────────────────
+	await prisma.user.upsert({
+		where: { email: 'admin@pacific-fish.ru' },
+		update: {},
+		create: {
+			email: 'admin@pacific-fish.ru',
+			passwordHash: hashSync('admin123', 10),
+			name: 'Администратор',
+			role: 'ADMIN',
+		},
+	});
+
 	// ─── Suppliers ───────────────────────────────────────
 	const suppliers = await Promise.all(
 		[
